@@ -1,5 +1,8 @@
 # Audify (After Effects)
 **Audify** es un panel ScriptUI para After Effects que te ayuda a **controlar volumen rápido** y a **hacer ducking automático** (bajar música cuando entra voz/diálogo).
+
+<img width="298" height="272" alt="Audify" src="https://github.com/user-attachments/assets/cc7d3307-08a4-461e-87d0-cf8ec7d8715c" />
+
 ---
 ## Instalación
 ### Windows
