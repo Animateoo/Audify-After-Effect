@@ -202,6 +202,26 @@
             win.onResizing = win.onResize = function() { this.layout.resize(); };
 
             // -- CORE AUDIO METHODS --
+            function layerHasDucking(lvl) {
+                try {
+                    return lvl.expressionEnabled && lvl.expression.indexOf("Duck Amount") !== -1;
+                } catch (e) { return false; }
+            }
+            function sampleBaseLevel(lvl, layer, fadeType, dur) {
+                var t;
+                if (fadeType === "out") {
+                    t = Math.max(layer.inPoint + dur + 0.1, layer.outPoint - dur - 0.5);
+                } else if (fadeType === "both") {
+                    t = (layer.inPoint + layer.outPoint) / 2;
+                } else {
+                    t = layer.inPoint + dur + 0.1;
+                }
+                t = Math.min(Math.max(t, layer.inPoint), layer.outPoint - 0.01);
+                try {
+                    return lvl.valueAtTime(t, true);
+                } catch (e) {}
+                return [0, 0];
+            }
             function applyFade(type) {
                 var comp = app.project.activeItem; if (!comp || !(comp instanceof CompItem)) return;
                 app.beginUndoGroup("Fade Audio");
@@ -210,9 +230,28 @@
                     var l = sel[i]; if (!l.hasAudio) continue;
                     var lvl = l.property("Audio").property("Audio Levels");
                     var slnt = [-48, -48];
-                    var norm = lvl.numKeys > 0 ? lvl.valueAtTime(l.inPoint + dur + 0.1, true) : lvl.value;
+                    var hadExpr = false;
+                    var exprText = "";
+                    try {
+                        hadExpr = lvl.expressionEnabled && lvl.expression;
+                        if (hadExpr) exprText = lvl.expression;
+                    } catch (e) {}
+                    var ducking = layerHasDucking(lvl);
+                    var norm;
+                    if (ducking || hadExpr) {
+                        norm = sampleBaseLevel(lvl, l, type, dur);
+                    } else {
+                        norm = lvl.numKeys > 0 ? lvl.valueAtTime(l.inPoint + dur + 0.1, true) : lvl.value;
+                    }
+                    if (!norm || norm.length < 2) norm = [0, 0];
                     if (type == "in" || type == "both") { lvl.setValueAtTime(l.inPoint, slnt); lvl.setValueAtTime(l.inPoint + dur, norm); }
                     if (type == "out" || type == "both") { lvl.setValueAtTime(l.outPoint - dur, norm); lvl.setValueAtTime(l.outPoint, slnt); }
+                    if (hadExpr) {
+                        try {
+                            lvl.expression = exprText;
+                            lvl.expressionEnabled = true;
+                        } catch (e) {}
+                    }
                 }
                 app.endUndoGroup();
             }
