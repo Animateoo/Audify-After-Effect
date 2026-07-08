@@ -1,18 +1,18 @@
-/*
-Â© Mateo Crespo (Animateo)
+﻿/*
+© Mateo Crespo (Animateo)
 
 Puedes usar este plugin libremente.
 No puedes venderlo, redistribuirlo ni publicar versiones modificadas.
 
-Â¿Encontraste una mejora o correcciÃ³n?
-Por favor, compÃ¡rtela con el autor.
+¿Encontraste una mejora o corrección?
+Por favor, compártela con el autor.
 */
 
-// Audify v12.0 - The Orange Pose2Pose Match (Geometric Line-Art & Dynamic Scales)
+// Audify v12.0 - The Orange Animateoo Match (Geometric Line-Art & Dynamic Scales)
 (function(thisObj) {
     var isWin = ($.os.indexOf("Windows") !== -1);
 
-    // EXACT Pose2Pose contrast ratios, but Orange highlighting!
+    // EXACT Animateoo contrast ratios, but Orange highlighting!
     var PALETTE = {
         winBg: "#141414",     // Deep Pitch dark background to map gaps exactly
         btnBg: "#222222",     // Distinct Graphite block for the buttons (stands out clearly)
@@ -30,7 +30,7 @@ Por favor, compÃ¡rtela con el autor.
         return [r, g, b, 1];
     }
 
-    // Completely rebuilt to small, elegant line-art vectors inspired by Pose2Pose
+    // Completely rebuilt to small, elegant line-art vectors inspired by Animateoo
     var VECTORS = {
         "IN": function(g, bw, bh, btn) {
             var cx = bw/2, cy = bh/2; 
