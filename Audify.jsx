@@ -1,18 +1,17 @@
 ﻿/*
-© Mateo Crespo (Animateo)
+Â© Mateo Crespo (Animateo)
 
 Puedes usar este plugin libremente.
 No puedes venderlo, redistribuirlo ni publicar versiones modificadas.
 
-¿Encontraste una mejora o corrección?
-Por favor, compártela con el autor.
+Â¿Encontraste una mejora o correcciÃ³n?
+Por favor, compÃ¡rtela con el autor.
 */
-
-// Audify v12.0 - The Orange Animateoo Match (Geometric Line-Art & Dynamic Scales)
+// Audify v12.0 - Interfaz Animateoo (Geometric Line-Art & Dynamic Scales)
 (function(thisObj) {
     var isWin = ($.os.indexOf("Windows") !== -1);
 
-    // EXACT Animateoo contrast ratios, but Orange highlighting!
+    // Contraste de panel Animateoo con acento naranja
     var PALETTE = {
         winBg: "#141414",     // Deep Pitch dark background to map gaps exactly
         btnBg: "#222222",     // Distinct Graphite block for the buttons (stands out clearly)
@@ -30,7 +29,7 @@ Por favor, compártela con el autor.
         return [r, g, b, 1];
     }
 
-    // Completely rebuilt to small, elegant line-art vectors inspired by Animateoo
+    // Completely rebuilt to small, elegant line-art vectors inspired by diseÃ±o Animateoo
     var VECTORS = {
         "IN": function(g, bw, bh, btn) {
             var cx = bw/2, cy = bh/2; 
