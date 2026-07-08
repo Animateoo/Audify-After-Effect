@@ -1,12 +1,13 @@
-﻿/*
-Â© Mateo Crespo (Animateo)
+/*
+© Mateo Crespo (Animateo)
 
 Puedes usar este plugin libremente.
 No puedes venderlo, redistribuirlo ni publicar versiones modificadas.
 
-Â¿Encontraste una mejora o correcciÃ³n?
-Por favor, compÃ¡rtela con el autor.
+¿Encontraste una mejora o corrección?
+Por favor, compártela con el autor.
 */
+
 // Audify v12.0 - Interfaz Animateoo (Geometric Line-Art & Dynamic Scales)
 (function(thisObj) {
     var isWin = ($.os.indexOf("Windows") !== -1);
